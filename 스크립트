@@ -1,2 +1,33 @@
-dsadfsdfsall
-ㅈㄷㄹㄴㅇㄻㄴㅇㄻㄴㅇㄹ
+using UnityEngine;
+
+public class CarController : MonoBehaviour
+{
+    public Transform[] waypoints;   // 이동할 웨이포인트들
+    public float speed = 5f;        // 주행 속도
+    public float turnSpeed = 5f;    // 회전 속도
+    private int currentIndex = 0;   // 현재 목표 웨이포인트 인덱스
+
+    void Update()
+    {
+        if (waypoints.Length == 0) return;
+
+        // 현재 목표 웨이포인트 위치
+        Transform target = waypoints[currentIndex];
+
+        // 웨이포인트 방향으로 이동
+        Vector3 direction = (target.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+
+        // 부드러운 회전
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+
+        // 웨이포인트에 가까워지면 다음으로
+        if (Vector3.Distance(transform.position, target.position) < 1f)
+        {
+            currentIndex++;
+            if (currentIndex >= waypoints.Length)
+                currentIndex = 0; // 반복 주행하려면 0으로 초기화
+        }
+    }
+}
