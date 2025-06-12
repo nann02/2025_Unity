@@ -10,7 +10,7 @@ public class HungerSystem : MonoBehaviour
 
     private Image[] heartImages;
     private Image hungerFillImage;
-    private Text hungerText; // 일반 Text 사용
+    private Text hungerText;
 
     public float hungerDecreaseInterval = 1f;
     private bool isHungerZero = false;
@@ -32,7 +32,7 @@ public class HungerSystem : MonoBehaviour
         heartImages[2] = GameObject.Find("Heart (2)").GetComponent<Image>();
 
         hungerFillImage = GameObject.Find("Hungerbar").GetComponent<Image>();
-        hungerText = GameObject.Find("Text").GetComponent<Text>(); // 일반 Text
+        hungerText = GameObject.Find("Text").GetComponent<Text>();
 
         renderers = GetComponentsInChildren<Renderer>();
         gameOverManager = FindObjectOfType<GameOverManager>();
@@ -88,7 +88,7 @@ public class HungerSystem : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("💀 게임 오버!");
+            Debug.Log("게임 오버!");
             TriggerGameOver();
         }
     }
@@ -139,7 +139,7 @@ public class HungerSystem : MonoBehaviour
         if (eatPenaltyActive)
         {
             hunger = Mathf.Clamp(hunger - 5, 0, maxHunger); // 패널티로 5 감소
-            Debug.Log("😖 먹는 중 패널티 적용됨! -5 감소");
+            Debug.Log("먹는 중 패널티 적용됨! -5 감소");
         }
         else
         {
@@ -180,10 +180,10 @@ public class HungerSystem : MonoBehaviour
     {
         isTotallyInvincible = true;
         StartCoroutine(BlinkPlayer(duration));
-        Debug.Log("🛡️ 무적 발동!");
+        Debug.Log("무적 발동");
         yield return new WaitForSeconds(duration);
         isTotallyInvincible = false;
-        Debug.Log("🛡️ 무적 종료");
+        Debug.Log("무적 종료");
     }
 
     public void EnableEatPenalty(float duration)
@@ -194,10 +194,10 @@ public class HungerSystem : MonoBehaviour
     IEnumerator EatPenaltyRoutine(float duration)
     {
         eatPenaltyActive = true;
-        Debug.Log("🍽️ 음식 패널티 시작!");
+        Debug.Log("음식 패널티 시작!");
         yield return new WaitForSeconds(duration);
         eatPenaltyActive = false;
-        Debug.Log("🍽️ 음식 패널티 종료");
+        Debug.Log("음식 패널티 종료");
     }
 
     void UpdateUI()

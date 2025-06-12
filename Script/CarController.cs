@@ -76,7 +76,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // 🚀 스피드 부스트
+    // 스피드 부스트
     public void BoostSpeed(float multiplier, float duration)
     {
         boostCount++;
@@ -94,7 +94,7 @@ public class CarController : MonoBehaviour
             speed /= multiplier;
     }
 
-    // ⛔ 정지
+    // 정지
     public void StopTemporarily(float duration)
     {
         stopCount++;
@@ -113,7 +113,7 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // 🔁 역주행 (시간 제한 없음, 토글)
+    // 역주행 (시간 제한 없음, 토글)
     public void ReverseDirection()
     {
         isReversed = !isReversed;

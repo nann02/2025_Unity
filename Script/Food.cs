@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        Debug.Log("😋 플레이어가 먹이를 먹음: " + gameObject.name);
+        Debug.Log("플레이어가 먹이를 먹음: " + gameObject.name);
 
         GameObject player = other.gameObject;
         HungerSystem hungerSystem = player.GetComponent<HungerSystem>();
@@ -17,7 +17,7 @@ public class Food : MonoBehaviour
             string foodName = gameObject.name.ToLower();
             bool hungerIncreased = false;
 
-            // ✅ 음식 효과 적용
+            // 음식 효과 적용
             switch (CharacterSelectUI.selectedAnimalType)
             {
                 case CharacterSelectUI.AnimalType.Goat:
@@ -51,7 +51,7 @@ public class Food : MonoBehaviour
                 FindObjectOfType<EatTracker>()?.AddEat();
             }
 
-            Debug.Log(hungerIncreased ? "🍽️ 배고픔 20 회복됨!" : "😶 배고픔 변화 없음");
+            Debug.Log(hungerIncreased ? "배고픔 20 회복됨" : "배고픔 변화 없음");
         }
 
         if (FoodSpawner.Instance != null)
@@ -67,7 +67,7 @@ public class Food : MonoBehaviour
         GameObject heartPrefab = Resources.Load<GameObject>("FloatingHeart");
         if (heartPrefab == null)
         {
-            Debug.LogWarning("💔 Resources/FloatingHeart 프리팹을 찾을 수 없습니다.");
+            Debug.LogWarning("Resources/FloatingHeart 프리팹을 찾을 수 없습니다.");
             return;
         }
 

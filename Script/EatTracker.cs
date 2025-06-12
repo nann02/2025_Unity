@@ -9,14 +9,14 @@ public class EatTracker : MonoBehaviour
     private int eatCount = 0;
     private int bestRecord = 0;
 
-    public int CurrentEatCount => eatCount;      // ✅ 추가: 외부에서 읽기용
-    public int BestEatRecord => bestRecord;      // ✅ 추가
+    public int CurrentEatCount => eatCount;   
+    public int BestEatRecord => bestRecord; 
 
     void Start()
     {
         bestRecord = PlayerPrefs.GetInt("BestEatRecord", 0);
         UpdateUI();
-        newRecordText.gameObject.SetActive(false); // NEW! 처음엔 숨김
+        newRecordText.gameObject.SetActive(false); // NEW 처음엔 숨김
     }
 
     public void AddEat()
@@ -27,7 +27,7 @@ public class EatTracker : MonoBehaviour
         {
             bestRecord = eatCount;
             PlayerPrefs.SetInt("BestEatRecord", bestRecord);
-            newRecordText.gameObject.SetActive(true); // NEW! 표시
+            newRecordText.gameObject.SetActive(true); // NEW 표시
         }
 
         UpdateUI();

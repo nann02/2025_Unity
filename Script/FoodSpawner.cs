@@ -15,14 +15,14 @@ public class FoodSpawner : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Debug.Log("✅ FoodSpawner 인스턴스 생성됨");
+        Debug.Log("FoodSpawner 인스턴스 생성됨");
     }
 
     void Start()
     {
-        Debug.Log("🍠 carrotPrefab 연결됨: " + (carrotPrefab != null));
-        Debug.Log("🍎 applePrefab 연결됨: " + (applePrefab != null));
-        Debug.Log("🌽 cornPrefab 연결됨: " + (cornPrefab != null));
+        Debug.Log("carrotPrefab 연결됨: " + (carrotPrefab != null));
+        Debug.Log("applePrefab 연결됨: " + (applePrefab != null));
+        Debug.Log("cornPrefab 연결됨: " + (cornPrefab != null));
 
         SpawnFoods();
     }
@@ -31,7 +31,7 @@ public class FoodSpawner : MonoBehaviour
     {
         if (spawnPoints.Length < 15)
         {
-            Debug.LogError("❌ 스폰 포인트가 15개보다 적습니다!");
+            Debug.LogError("스폰 포인트가 15개보다 적습니다!");
             return;
         }
 
@@ -71,43 +71,42 @@ public class FoodSpawner : MonoBehaviour
         }
     }
 
-    // ✅ 포함된 리스폰 기능
-    public void Respawn(Vector3 position, float delay = 5f)
+    // 포함된 리스폰 기능
+    public void Respawn(Vector3 position, float delay = 30f)
     {
         StartCoroutine(RespawnRoutine(position, delay));
     }
 
     private IEnumerator RespawnRoutine(Vector3 position, float delay)
     {
-        Debug.Log("⏳ 리스폰 타이머 시작 (" + delay + "초)");
+        Debug.Log("리스폰 타이머 시작 (" + delay + "초)");
 
         yield return new WaitForSeconds(delay);
 
-        Debug.Log("🧭 리스폰 로직 진입");
+        Debug.Log("리스폰 로직 진입");
 
         GameObject prefab = GetRandomFoodPrefab();
         if (prefab != null)
         {
-            // ✅ 고정값 0.5 제거 → 원래 위치 그대로 사용
             Vector3 respawnPosition = position;
 
             GameObject newFood = Instantiate(prefab, respawnPosition, Quaternion.identity);
-            Debug.Log("🍏 새 먹이 생성 완료: " + newFood.name + " 위치: " + respawnPosition);
+            Debug.Log("새 먹이 생성 완료: " + newFood.name + " 위치: " + respawnPosition);
         }
         else
         {
-            Debug.LogWarning("⚠️ 랜덤 프리팹이 null입니다!");
+            Debug.LogWarning("랜덤 프리팹이 null입니다!");
         }
     }
 
-    public void RespawnSpecific(GameObject prefab, Vector3 position, float delay = 5f)
+    public void RespawnSpecific(GameObject prefab, Vector3 position, float delay = 30f)
     {
         StartCoroutine(RespawnSpecificRoutine(prefab, position, delay));
     }
 
     private IEnumerator RespawnSpecificRoutine(GameObject prefab, Vector3 position, float delay)
     {
-        Debug.Log("⏳ 아이템 리스폰 타이머 시작 (" + delay + "초)");
+        Debug.Log("아이템 리스폰 타이머 시작 (" + delay + "초)");
 
         yield return new WaitForSeconds(delay);
 
@@ -115,7 +114,7 @@ public class FoodSpawner : MonoBehaviour
         {
             Vector3 fixedPosition = position; // Y 고정하지 않음
             GameObject newObj = Instantiate(prefab, fixedPosition, Quaternion.identity);
-            Debug.Log("✨ 아이템 리스폰 완료: " + newObj.name + " at " + fixedPosition);
+            Debug.Log("아이템 리스폰 완료: " + newObj.name + " at " + fixedPosition);
         }
     }
 

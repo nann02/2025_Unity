@@ -15,7 +15,7 @@ public class CharacterSelectUI : MonoBehaviour
     public GameObject staminaUI;
     public GameObject itemEffectText;
 
-    public GameObject topLeftUI; // ✅ 인스펙터에서 연결할 UI
+    public GameObject topLeftUI; // 인스펙터에서 연결할 UI
 
     private bool hasSpawned = false;
 
@@ -61,7 +61,7 @@ public class CharacterSelectUI : MonoBehaviour
         if (hungerBar != null) hungerBar.SetActive(true);
         if (staminaUI != null) staminaUI.SetActive(true);
         if (itemEffectText != null) itemEffectText.SetActive(true);
-        if (topLeftUI != null) topLeftUI.SetActive(true); // ✅ 여기에서 직접 켜줌
+        if (topLeftUI != null) topLeftUI.SetActive(true); // 여기에서 직접 켜줌
 
         hasSpawned = true;
     }

@@ -2,7 +2,7 @@
 
 public class Item_StarUp : MonoBehaviour
 {
-    public string prefabName = "Star_Up"; // Resources/Star_Up.prefab
+    public string prefabName = "Star_Up";
 
     void OnTriggerEnter(Collider other)
     {
@@ -19,11 +19,11 @@ public class Item_StarUp : MonoBehaviour
                 GameObject prefab = Resources.Load<GameObject>(prefabName);
                 if (prefab != null)
                 {
-                    FoodSpawner.Instance.RespawnSpecific(prefab, spawnPosition, 5f);
+                    FoodSpawner.Instance.RespawnSpecific(prefab, spawnPosition, 30f);
                 }
                 else
                 {
-                    Debug.LogWarning("⚠️ Resources에서 프리팹을 불러올 수 없습니다: " + prefabName);
+                    Debug.LogWarning(" Resources에서 프리팹을 불러올 수 없습니다: " + prefabName);
                 }
             }
 
@@ -33,7 +33,7 @@ public class Item_StarUp : MonoBehaviour
 
     void ApplyRandomEffectToAllCars()
     {
-        int eventIndex = Random.Range(0, 6); // ✅ 0~5까지 6개
+        int eventIndex = Random.Range(0, 6); // 0~5까지 6개
         string message = "";
 
         foreach (CarController car in CarController.allCars)
@@ -69,7 +69,7 @@ public class Item_StarUp : MonoBehaviour
 
                 case 5:
                     message = "10초동안 먹을수록 더 배고픔!";
-                    EnableHungerPenaltyOnEat(); // 이게 누락되면 작동안 함
+                    EnableHungerPenaltyOnEat();
                     break;
 
             }
@@ -115,11 +115,5 @@ public class Item_StarUp : MonoBehaviour
                 hungerSystem.EnableEatPenalty(10f); // 10초 패널티 적용
             }
         }
-    }
-
-
-    void ApplyPlayerEffect(GameObject player)
-    {
-        // 필요 시 추가 효과 구현 가능
     }
 }

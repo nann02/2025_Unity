@@ -1,5 +1,5 @@
 using UnityEngine;
-using Ursaanimation.CubicFarmAnimals; // AnimationController용 네임스페이스
+using Ursaanimation.CubicFarmAnimals;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        // 회전 (회전은 Update에서 처리!)
+        // 회전
         float turnAmount = horizontal * turnSpeed * Time.deltaTime;
         Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
         rb.MoveRotation(rb.rotation * turnRotation);
@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
 
         float vertical = Input.GetAxis("Vertical");
 
-        // 이동만 FixedUpdate에서 처리
         Vector3 forwardMove = transform.forward * vertical * moveSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + forwardMove);
     }
